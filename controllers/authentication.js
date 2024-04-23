@@ -108,7 +108,7 @@ window.addEventListener('DOMContentLoaded', () => {
       try {
         await sendResetEmail(email);
         alert('Se ha enviado un correo de restablecimiento de contraseña a ' + email);
-        window.location.href="./index.html";
+        window.location.href="../index.html";
       } catch (error) {
         alert('Error al enviar el correo de restablecimiento de contraseña');
         console.log('Error al enviar el correo de restablecimiento de contraseña: ', error);
