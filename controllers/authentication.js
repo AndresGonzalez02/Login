@@ -15,7 +15,7 @@ if (loginin) {
 
     if(validation != null){
         alert('Authentication sucessfull '+email)
-        window.location.href='/Login/templates/pagina.html'
+        window.location.href='/Login/templates/pagina.html';
     }
     else{
         alert('Error authentication no sucessfull ')
@@ -35,7 +35,7 @@ if (googleLoginBtn) {
       const result = await signInWithGoogle();
       const user = result.user;
       alert('Authentication successful ' + user.email);
-      window.location.href='/templates/pagina.html';
+      window.location.href='/Login/templates/pagina.html';
     } catch (error) {
       alert('Error authentication not successful');
       console.log('session not validated');
@@ -49,7 +49,7 @@ if (facebookLoginBtn) {
       const result = await signInWithFacebook();
       const user = result.user;
       alert('Authentication successful ' + user.email);
-      window.location.href='/templates/pagina.html';
+      window.location.href='/Login/templates/pagina.html';
     } catch (error) {
       alert('Error authentication not successful');
       console.log('session not validated');
@@ -88,7 +88,7 @@ if (registerBtn) {
       const result = await register(email, password);
       const user = result.user;
       alert('Registration successful. A verification email has been sent to ' + user.email);
-      window.location.href='/templates/pagina.html';
+      window.location.href='/Login/templates/pagina.html';
     } catch (error) {
       alert('Error registration not successful');
       console.log('registration not validated');
@@ -108,7 +108,7 @@ window.addEventListener('DOMContentLoaded', () => {
       try {
         await sendResetEmail(email);
         alert('Se ha enviado un correo de restablecimiento de contraseña a ' + email);
-        window.location.href="../index.html";
+        window.location.href="/index.html";
       } catch (error) {
         alert('Error al enviar el correo de restablecimiento de contraseña');
         console.log('Error al enviar el correo de restablecimiento de contraseña: ', error);
