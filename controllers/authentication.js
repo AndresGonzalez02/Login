@@ -1,4 +1,4 @@
-import { loginvalidation, signInWithGoogle, register } from ".../controllers/global.js";
+import { loginvalidation, signInWithGoogle, register } from "../Login/controllers/global.js";
 
 const loginin = document.getElementById("loginbtn")
 const googleLoginBtn = document.getElementById("googleLoginBtn");
@@ -15,7 +15,7 @@ if (loginin) {
 
     if(validation != null){
         alert('Authentication sucessfull '+email)
-        window.location.href='../templates/pagina.html'
+        window.location.href='..Login/templates/pagina.html'
     }
     else{
         alert('Error authentication no sucessfull ')
@@ -35,7 +35,7 @@ if (googleLoginBtn) {
       const result = await signInWithGoogle();
       const user = result.user;
       alert('Authentication successful ' + user.email);
-      window.location.href='../templates/pagina.html';
+      window.location.href='..Login/templates/pagina.html';
     } catch (error) {
       alert('Error authentication not successful');
       console.log('session not validated');
@@ -49,7 +49,7 @@ if (facebookLoginBtn) {
       const result = await signInWithFacebook();
       const user = result.user;
       alert('Authentication successful ' + user.email);
-      window.location.href='../templates/pagina.html';
+      window.location.href='..Login/templates/pagina.html';
     } catch (error) {
       alert('Error authentication not successful');
       console.log('session not validated');
@@ -88,7 +88,7 @@ if (registerBtn) {
       const result = await register(email, password);
       const user = result.user;
       alert('Registration successful. A verification email has been sent to ' + user.email);
-      window.location.href='../templates/pagina.html';
+      window.location.href='..Login/templates/pagina.html';
     } catch (error) {
       alert('Error registration not successful');
       console.log('registration not validated');
@@ -96,7 +96,7 @@ if (registerBtn) {
   });
 }
 
-import { sendResetEmail } from './global.js';
+import { sendResetEmail } from './Login/global.js';
 
 window.addEventListener('DOMContentLoaded', () => {
   const resetPassBtn = document.getElementById('resetPassbtn');
