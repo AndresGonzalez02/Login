@@ -15,7 +15,7 @@ if (loginin) {
 
     if(validation != null){
         alert('Authentication sucessfull '+email)
-        window.location.href='/templates/pagina.html'
+        window.location.href='/Login/templates/pagina.html'
     }
     else{
         alert('Error authentication no sucessfull ')
