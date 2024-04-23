@@ -96,7 +96,8 @@ if (registerBtn) {
   });
 }
 
-import { sendResetEmail } from '/controllers/global.js';
+import { sendResetEmail } from '/Login/controllers/global.js';
+
 
 window.addEventListener('DOMContentLoaded', () => {
   const resetPassBtn = document.getElementById('resetPassbtn');
