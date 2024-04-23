@@ -1,4 +1,4 @@
-import { userstate, logout, deleteAccount } from "../Login/controllers/global.js";
+import { userstate, logout, deleteAccount } from "/controllers/global.js";
 
 userstate()
 

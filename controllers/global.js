@@ -34,7 +34,7 @@ export const register = async (email, password) => {
   const result = await createUserWithEmailAndPassword(auth, email, password);
   const user = result.user;
   if (user) {
-    await sendEmailVerification(user); // <-- Añade esto
+    await sendEmailVerification(user);
   }
   return result;
 };
