@@ -1,4 +1,4 @@
-import { loginvalidation, signInWithGoogle, register } from "controllers/global.js";
+import { loginvalidation, signInWithGoogle, register } from "./global.js";
 
 const loginin = document.getElementById("loginbtn")
 const googleLoginBtn = document.getElementById("googleLoginBtn");
@@ -96,8 +96,7 @@ if (registerBtn) {
   });
 }
 
-import { sendResetEmail } from '/Login/controllers/global.js';
-
+import { sendResetEmail } from './global.js';
 
 window.addEventListener('DOMContentLoaded', () => {
   const resetPassBtn = document.getElementById('resetPassbtn');
