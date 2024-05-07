@@ -1,5 +1,6 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js'
 //import { getAnalytics } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-analytics .js'
+import { setDoc } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js';
 import {
   getAuth,
   signInWithEmailAndPassword,
@@ -13,7 +14,7 @@ import {
   reauthenticateWithCredential,
   EmailAuthProvider,
   signInWithPopup
-} from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js'
+} from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js';
 import { getFirestore } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js';
 
 const firebaseConfig = {
@@ -45,6 +46,7 @@ export const register = async (email, password) => {
   }
   return result;
 };
+
 
 
 const provider = new GoogleAuthProvider();
