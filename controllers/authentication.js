@@ -89,7 +89,7 @@ if (registerBtn) {
       const result = await register(email, password);
       const user = result.user;
       alert('Registration successful. A verification email has been sent to ' + user.email);
-      //window.location.href='/Login/templates/pagina.html';
+      window.location.href='/Login/templates/pagina.html';
     } catch (error) {
       alert('Error registration not successful');
       console.log('registration not validated');
