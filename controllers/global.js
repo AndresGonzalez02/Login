@@ -16,7 +16,7 @@ import {
 } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js'
 import { getFirestore } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js';
 
-const db = getFirestore(app);
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyAtc-f5N6Onj67YKjj-YTnqIWjHdaF7nlk",
@@ -32,6 +32,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 //const analytics = getAnalytics();
 const auth = getAuth(app);
+const db = getFirestore(app);
 
 export const register = async (email, password) => {
   const result = await createUserWithEmailAndPassword(auth, email, password);
