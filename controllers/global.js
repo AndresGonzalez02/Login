@@ -28,7 +28,7 @@ const firebaseConfig = {
 
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 //const analytics = getAnalytics();
 const auth = getAuth(app);
 
@@ -84,4 +84,3 @@ export const deleteAccount = async (email, password) => {
     console.log('Error al eliminar la cuenta: ', error);
   }
 };
-export { app };
