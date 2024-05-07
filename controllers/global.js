@@ -101,6 +101,6 @@ export const saveUserData = async (cedula, nombre, fechaNacimiento, direccion, t
       telefono,
     });
   } catch (error) {
-    console.log('Error al guardar los datos del usuario: ', error);
+    console.log('Error al guardar los datos del usuario: ', error, '  ', cedula);
   }
 };
