@@ -84,3 +84,4 @@ export const deleteAccount = async (email, password) => {
     console.log('Error al eliminar la cuenta: ', error);
   }
 };
+export { app };
