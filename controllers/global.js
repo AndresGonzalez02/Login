@@ -14,6 +14,9 @@ import {
   EmailAuthProvider,
   signInWithPopup
 } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js'
+import { getFirestore } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js';
+
+const db = getFirestore(app);
 
 const firebaseConfig = {
   apiKey: "AIzaSyAtc-f5N6Onj67YKjj-YTnqIWjHdaF7nlk",
@@ -35,9 +38,16 @@ export const register = async (email, password) => {
   const user = result.user;
   if (user) {
     await sendEmailVerification(user);
+    const cedula = document.getElementById("cedula").value;
+    const nombre = document.getElementById("nombre").value;
+    const fechaNacimiento = document.getElementById("fechaNacimiento").value;
+    const direccion = document.getElementById("direccion").value;
+    const telefono = document.getElementById("telefono").value;
+    await saveUserData(cedula, nombre, fechaNacimiento, direccion, telefono, email);
   }
   return result;
 };
+
 
 const provider = new GoogleAuthProvider();
 
@@ -80,5 +90,19 @@ export const deleteAccount = async (email, password) => {
   } catch (error) {
     alert('Error al eliminar la cuenta');
     console.log('Error al eliminar la cuenta: ', error);
+  }
+};
+
+export const saveUserData = async (cedula, nombre, fechaNacimiento, direccion, telefono, email) => {
+  try {
+    await setDoc(doc(db, 'datosUsuario', email), {
+      cedula,
+      nombre,
+      fechaNacimiento,
+      direccion,
+      telefono,
+    });
+  } catch (error) {
+    console.log('Error al guardar los datos del usuario: ', error);
   }
 };
