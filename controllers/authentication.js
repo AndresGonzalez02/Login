@@ -4,11 +4,7 @@ const loginin = document.getElementById("loginbtn")
 const googleLoginBtn = document.getElementById("googleLoginBtn");
 const facebookLoginBtn = document.getElementById("facebookLoginBtn");
 const registerBtn = document.getElementById("registerBtn");
-const cedula = document.getElementById("cedula");
-const nombre = document.getElementById("nombre");
-const fechaNacimiento = document.getElementById("fechaNacimiento");
-const direccion = document.getElementById("direccion");
-const telefono = document.getElementById("telefono");
+
 
 if (loginin) {
   async function validar(){
