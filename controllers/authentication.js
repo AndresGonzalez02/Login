@@ -4,7 +4,7 @@ import { addData } from "./firestore.js"; // Asegúrate de que la ruta sea corre
 const loginin = document.getElementById("loginbtn")
 const googleLoginBtn = document.getElementById("googleLoginBtn");
 const facebookLoginBtn = document.getElementById("facebookLoginBtn");
-const registerBtn = document.getElementById("registerBtn");
+const registerBtn = document.getElementById("signin-btn");
 
 if (loginin) {
   async function validar(){
