@@ -18,6 +18,7 @@ async function sesion(){
 
 window.addEventListener('DOMContentLoaded', async()=>{
     cerrar.addEventListener('click',sesion)
+    await displayUserData();
 })
 
 
@@ -40,6 +41,28 @@ if (deleteAccountForm) {
     const password = passwordInput.value;
     await deleteAccount(email, password);
   });
+}
+
+async function displayUserData() {
+  const user = auth.currentUser;
+  if (user) {
+    const userDocRef = doc(db, 'datosUsuario', user.email);
+    const userDocSnap = await getDoc(userDocRef);
+
+    if (userDocSnap.exists()) {
+      const userData = userDocSnap.data();
+      // Now you can access the user data and display it in the HTML
+      document.getElementById('cedula').value = userData.cedula;
+      document.getElementById('nombre').value = userData.nombre;
+      document.getElementById('fechaNacimiento').value = userData.fechaNacimiento;
+      document.getElementById('direccion').value = userData.direccion;
+      document.getElementById('telefono').value = userData.telefono;
+    } else {
+      console.log('User document does not exist.');
+    }
+  } else {
+    console.log('User is not signed in.');
+  }
 }
 
 
