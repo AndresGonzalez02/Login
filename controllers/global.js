@@ -1,6 +1,6 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js'
 //import { getAnalytics } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-analytics .js'
-import { 
+import {
   getAuth,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
@@ -16,8 +16,6 @@ import {
 } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js'
 import { getFirestore } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js';
 
-
-
 const firebaseConfig = {
   apiKey: "AIzaSyAtc-f5N6Onj67YKjj-YTnqIWjHdaF7nlk",
   authDomain: "web2024-9794a.firebaseapp.com",
@@ -30,7 +28,6 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-//const analytics = getAnalytics();
 const auth = getAuth(app);
 const db = getFirestore(app);
 
