@@ -1,9 +1,11 @@
 import { loginvalidation, signInWithGoogle, register } from "./global.js";
+import { addUserToFirestore } from "./firestore.js";
 
 const loginin = document.getElementById("loginbtn")
 const googleLoginBtn = document.getElementById("googleLoginBtn");
 const facebookLoginBtn = document.getElementById("facebookLoginBtn");
 const registerBtn = document.getElementById("registerBtn");
+
 
 if (loginin) {
   async function validar(){
@@ -87,6 +89,17 @@ if (registerBtn) {
     try {
       const result = await register(email, password);
       const user = result.user;
+      
+      // Aquí agregamos el usuario a Firestore
+      const data = {
+        cedula: document.getElementById("cedula").value,
+        nombreCompleto: document.getElementById("nombreCompleto").value,
+        fechaNacimiento: document.getElementById("fechaNacimiento").value,
+        direccion: document.getElementById("direccion").value,
+        telefono: document.getElementById("telefono").value,
+      };
+      await addUserToFirestore(user.uid, data);
+
       alert('Registration successful. A verification email has been sent to ' + user.email);
       window.location.href='/Login/templates/pagina.html';
     } catch (error) {
@@ -95,6 +108,7 @@ if (registerBtn) {
     }
   });
 }
+
 
 import { sendResetEmail } from './global.js';
 
@@ -116,6 +130,8 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+
 
 
 
