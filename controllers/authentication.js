@@ -1,10 +1,9 @@
-import { loginvalidation, signInWithGoogle, register } from "../controllers/global.js";
-import { addData } from "./firestore.js"; // Asegúrate de que la ruta sea correcta
+import { loginvalidation, signInWithGoogle, register } from "./global.js";
 
 const loginin = document.getElementById("loginbtn")
 const googleLoginBtn = document.getElementById("googleLoginBtn");
 const facebookLoginBtn = document.getElementById("facebookLoginBtn");
-const registerBtn = document.getElementById("signin-btn");
+const registerBtn = document.getElementById("registerBtn");
 
 if (loginin) {
   async function validar(){
@@ -16,7 +15,7 @@ if (loginin) {
 
     if(validation != null){
         alert('Authentication sucessfull '+email)
-        window.location.href='../templates/pagina.html'
+        window.location.href='/Login/templates/pagina.html';
     }
     else{
         alert('Error authentication no sucessfull ')
@@ -36,7 +35,7 @@ if (googleLoginBtn) {
       const result = await signInWithGoogle();
       const user = result.user;
       alert('Authentication successful ' + user.email);
-      window.location.href='../templates/pagina.html';
+      window.location.href='/Login/templates/pagina.html';
     } catch (error) {
       alert('Error authentication not successful');
       console.log('session not validated');
@@ -50,7 +49,7 @@ if (facebookLoginBtn) {
       const result = await signInWithFacebook();
       const user = result.user;
       alert('Authentication successful ' + user.email);
-      window.location.href='../templates/pagina.html';
+      window.location.href='/Login/templates/pagina.html';
     } catch (error) {
       alert('Error authentication not successful');
       console.log('session not validated');
@@ -76,8 +75,8 @@ function validatePassword(password) {
 
 if (registerBtn) {
   registerBtn.addEventListener('click', async () => {
-    const email = document.getElementById("user-email").value;
-    const password = document.getElementById("user-password").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("pass").value;
 
     // Verifica que la contraseña sea válida antes de intentar registrar al usuario
     if (!validatePassword(password)) {
@@ -89,17 +88,7 @@ if (registerBtn) {
       const result = await register(email, password);
       const user = result.user;
       alert('Registration successful. A verification email has been sent to ' + user.email);
-
-      // Aquí agregas los datos del usuario a Firestore
-      const id = user.uid; // El ID del usuario
-      const cc = document.getElementById("user-cc").value; // Debes obtener estos datos del formulario de registro
-      const fullName = document.getElementById("user-fullname").value;
-      const address = document.getElementById("user-address").value;
-      const phone = document.getElementById("user-phone").value;
-      const bornDate = document.getElementById("user-born-date").value;
-      await addData(id, cc, fullName, address, phone, email, bornDate);
-
-      window.location.href='../templates/pagina.html';
+      window.location.href='/Login/templates/pagina.html';
     } catch (error) {
       alert('Error registration not successful');
       console.log('registration not validated');
@@ -119,7 +108,7 @@ window.addEventListener('DOMContentLoaded', () => {
       try {
         await sendResetEmail(email);
         alert('Se ha enviado un correo de restablecimiento de contraseña a ' + email);
-        window.location.href="../index.html";
+        window.location.href="/Login/index.html";
       } catch (error) {
         alert('Error al enviar el correo de restablecimiento de contraseña');
         console.log('Error al enviar el correo de restablecimiento de contraseña: ', error);
@@ -127,3 +116,5 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+
