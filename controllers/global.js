@@ -25,11 +25,7 @@ const firebaseConfig = {
   measurementId: "G-XSNSQ8FFLW"
 };
 
-import {
-  getFirestore,
-  collection,
-  addDoc
- } from 'https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.'
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
