@@ -1,3 +1,4 @@
+import { app } from './global.js';
 import { loginvalidation, signInWithGoogle, register } from "./global.js";
 
 const loginin = document.getElementById("loginbtn")
@@ -56,7 +57,7 @@ if (facebookLoginBtn) {
       alert('Authentication successful ' + user.email);
       window.location.href='/Login/templates/pagina.html';
     } catch (error) {
-      alert('Error authentication not successful');
+      alert('Errorauthentication not successful');
       console.log('session not validated');
     }
   });
@@ -82,6 +83,11 @@ if (registerBtn) {
   registerBtn.addEventListener('click', async () => {
     const email = document.getElementById("email").value;
     const password = document.getElementById("pass").value;
+    const cedulaValue = document.getElementById("cedula").value;
+    const nombreValue = document.getElementById("nombre").value;
+    const fechaNacimientoValue = document.getElementById("fechaNacimiento").value;
+    const direccionValue = document.getElementById("direccion").value;
+    const telefonoValue = document.getElementById("telefono").value;
 
     // Verifica que la contraseña sea válida antes de intentar registrar al usuario
     if (!validatePassword(password)) {
@@ -90,7 +96,7 @@ if (registerBtn) {
     }
 
     try {
-      const result = await register(email, password);
+      const result = await register(email, password, cedulaValue, nombreValue, fechaNacimientoValue, direccionValue, telefonoValue);
       const user = result.user;
       alert('Registration successful. A verification email has been sent to ' + user.email);
       //window.location.href='/Login/templates/pagina.html';
@@ -121,5 +127,4 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
-
 
