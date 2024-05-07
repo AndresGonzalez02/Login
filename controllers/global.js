@@ -30,7 +30,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
-export { app };
 
 export const register = async (email, password) => {
   const result = await createUserWithEmailAndPassword(auth, email, password);
@@ -102,6 +101,6 @@ export const saveUserData = async (cedula, nombre, fechaNacimiento, direccion, t
       telefono,
     });
   } catch (error) {
-    console.log('Error al guardar los datos del usuario: ', error, '  ', cedula);
+    console.log('Error al guardar los datos del usuario: ', error);
   }
 };
