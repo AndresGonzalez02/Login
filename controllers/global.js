@@ -99,7 +99,7 @@ export const deleteAccount = async (email, password) => {
 
 export const saveUserData = async (cedula, nombre, fechaNacimiento, direccion, telefono, email) => {
   try {
-    await setDoc(doc(db, 'datosUsuario', email), {
+    await setDoc(doc(db, 'datosUsuario', uid), {
       cedula,
       nombre,
       fechaNacimiento,
