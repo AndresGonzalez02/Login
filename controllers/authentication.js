@@ -1,4 +1,4 @@
-import { loginvalidation, signInWithGoogle, register } from "./global.js";
+import { loginvalidation, signInWithGoogle, register, displayUserData } from "./global.js";
 
 const loginin = document.getElementById("loginbtn")
 const googleLoginBtn = document.getElementById("googleLoginBtn");
@@ -17,6 +17,7 @@ if (loginin) {
     if(validation != null){
         alert('Authentication sucessfull '+email)
         window.location.href='/Login/templates/pagina.html';
+        await displayUserData();
     }
     else{
         alert('Error authentication no sucessfull ')
