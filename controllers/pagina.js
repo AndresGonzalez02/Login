@@ -47,7 +47,7 @@ if (deleteAccountForm) {
 async function displayUserData() {
   const user = auth.currentUser;
   if (user) {
-    const userDocRef = doc(db, 'datosUsuario', user.email);
+    const userDocRef = doc(db, 'datosUsuario', user.uid); 
     const userDocSnap = await getDoc(userDocRef);
 
     if (userDocSnap.exists()) {

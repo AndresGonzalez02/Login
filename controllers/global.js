@@ -1,8 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js'
-//import { getAnalytics } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-analytics .js'
-import { setDoc } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js';
-import { doc } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js';
-
+import { setDoc, doc, getDoc } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js';
 import {
   getAuth,
   signInWithEmailAndPassword,
@@ -51,8 +48,6 @@ export const register = async (email, password) => {
   return result;
 };
 
-
-
 const provider = new GoogleAuthProvider();
 
 export const signInWithGoogle = () => signInWithPopup(auth, provider);
@@ -98,7 +93,9 @@ export const deleteAccount = async (email, password) => {
 };
 
 export const saveUserData = async (cedula, nombre, fechaNacimiento, direccion, telefono, email) => {
-  try {
+  const user = auth.currentUser;
+  if (user) {
+    const uid = user.uid;
     await setDoc(doc(db, 'datosUsuario', uid), {
       cedula,
       nombre,
@@ -106,7 +103,75 @@ export const saveUserData = async (cedula, nombre, fechaNacimiento, direccion, t
       direccion,
       telefono,
     });
-  } catch (error) {
-    console.log('Error al guardar los datos del usuario: ', error);
+  } else {
+    console.log('No user is signed in.');
   }
 };
+
+import { userstate, logout, deleteAccount } from "./global.js";
+import { auth } from './global.js';
+
+userstate()
+
+const cerrar=document.getElementById('logout')
+
+async function sesion(){
+    const validar = logout()
+    const verificar = await validar
+
+    .then((verificar) => {
+        alert ('sesion cerrada')
+        window.location.href="../index.html"
+    }).catch((error) => {
+        alert('Sesion no cerrada')
+    });
+}
+
+window.addEventListener('DOMContentLoaded', async()=>{
+    cerrar.addEventListener('click',sesion)
+    await displayUserData();
+})
+
+
+
+const deleteAccountBtn = document.getElementById('deleteAccountBtn');
+const deleteAccountForm = document.getElementById('deleteAccountForm');
+const emailInput = document.getElementById('email');
+const passwordInput = document.getElementById('password');
+
+if (deleteAccountBtn) {
+  deleteAccountBtn.addEventListener('click', () => {
+    emailInput.value = auth.currentUser.email;
+  });
+}
+
+if (deleteAccountForm) {
+  deleteAccountForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const email = emailInput.value;
+    const password = passwordInput.value;
+    await deleteAccount(email, password);
+  });
+}
+
+async function displayUserData() {
+  const user = auth.currentUser;
+  if (user) {
+    const userDocRef = doc(db, 'datosUsuario', user.uid);
+    const userDocSnap = await getDoc(userDocRef);
+
+    if (userDocSnap.exists()) {
+      const userData = userDocSnap.data();
+      // Now you can access the user data and display it in the HTML
+      document.getElementById('cedula').value = userData.cedula;
+      document.getElementById('nombre').value = userData.nombre;
+      document.getElementById('fechaNacimiento').value = userData.fechaNacimiento;
+      document.getElementById('direccion').value = userData.direccion;
+      document.getElementById('telefono').value = userData.telefono;
+    } else {
+      console.log('User document does not exist.');
+    }
+  } else {
+    console.log('User is not signed in.');
+  }
+}
