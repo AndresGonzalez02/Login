@@ -63,10 +63,11 @@ export const loginvalidation=(email,password)=>
 export const logout=()=>signOut(auth);
 
 export function userstate() {
-  onAuthStateChanged(auth, (user) => {
+  onAuthStateChanged(auth, async (user) => {
     if (user) {
       const uid = user.uid;
       console.log(uid)
+      await displayUserData(); // Add this line
     } else {
       window.location.href="../index.html"
     }
