@@ -1,4 +1,4 @@
-import { userstate, logout, deleteAccount } from "./global.js";
+import { userstate, logout, deleteAccount, displayUserData } from "./global.js";
 import { auth } from './global.js';
 
 userstate()
