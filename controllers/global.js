@@ -57,9 +57,30 @@ const facebookProvider = new FacebookAuthProvider();
 export const signInWithFacebook = () => signInWithPopup(auth, facebookProvider);
 
 //metodo de inicio de sesión
-export const loginvalidation=(email,password)=>
-  signInWithEmailAndPassword(auth, email, password)
+export const loginvalidation = async (email, password) => {
+  try {
+    const result = await signInWithEmailAndPassword(auth, email, password);
+    const user = result.user;
+    const userDocRef = doc(db, 'datosUsuario', user.uid);
+    const userDocSnap = await getDoc(userDocRef);
 
+    if (userDocSnap.exists()) {
+      const userData = userDocSnap.data();
+      if (userData.rol === 'usuario') {
+        // If the user's role is "usuario", redirect to pagina.html
+        window.location.href = '/Login/templates/pagina.html';
+      } else if (userData.rol === 'admin') {
+        // If the user's role is "admin", redirect to Administrador.html
+        window.location.href = '/Login/templates/Administrador.html';
+      }
+    } else {
+      console.log('User document does not exist.');
+    }
+  } catch (error) {
+    console.log('Error logging in: ', error);
+    alert('Error al iniciar sesión');
+  }
+};
 export const logout=()=>signOut(auth);
 
 export function userstate() {
