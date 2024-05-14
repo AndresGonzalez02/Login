@@ -68,7 +68,7 @@ export const loginvalidation = async (email, password) => {
       const userData = userDocSnap.data();
       if (userData.rol === 'usuario') {
         // If the user's role is "usuario", redirect to pagina.html
-        return user;
+        window.location.href = '/Login/templates/pagina.html';
       } else if (userData.rol === 'admin') {
         // If the user's role is "admin", redirect to Administrador.html
         window.location.href = '/Login/templates/Administrador.html';
@@ -76,6 +76,7 @@ export const loginvalidation = async (email, password) => {
     } else {
       console.log('User document does not exist.');
     }
+    return user;
   } catch (error) {
     console.log('Error logging in: ', error);
     alert('Error al iniciar sesión');
