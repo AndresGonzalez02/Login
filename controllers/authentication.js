@@ -20,7 +20,7 @@ if (loginin) {
         await displayUserData();
     }
     else{
-        alert('Error authentication no sucessfullll ')
+        alert('Error authentication no sucessfull ')
         console.log('sesion '+email+' no validation')
     }
     
