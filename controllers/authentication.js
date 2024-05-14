@@ -10,20 +10,24 @@ if (loginin) {
   async function validar(){
     const email = document.getElementById("userlogin").value 
     const pass = document.getElementById("passlogin").value 
-
-    const verificar = loginvalidation(email,pass)
-    const validation = await verificar
-
+  
+    const validation = await loginvalidation(email,pass)
+  
     if(validation != null){
-        alert('Authentication sucessfull '+email)
-        window.location.href='/Login/templates/pagina.html';
-        await displayUserData();
+        alert('Authentication sucessfull '+validation.user.email)
+        if (validation.userData.rol === 'usuario') {
+          // If the user's role is "usuario", redirect to pagina.html
+          window.location.href='/Login/templates/pagina.html';
+        } else if (validation.userData.rol === 'admin') {
+          // If the user's role is "admin", redirect to Administrador.html
+          window.location.href='/Login/templates/Administrador.html';
+        }
+        await displayUserData(validation.user.uid);
     }
     else{
         alert('Error authentication no sucessfull ')
         console.log('sesion '+email+' no validation')
     }
-    
   }
 
   window.addEventListener('DOMContentLoaded',async()=>{
