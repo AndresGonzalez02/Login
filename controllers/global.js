@@ -81,6 +81,7 @@ export const loginvalidation = async (email, password) => {
     alert('Error al iniciar sesión');
   }
 };
+
 export const logout=()=>signOut(auth);
 
 export function userstate() {
