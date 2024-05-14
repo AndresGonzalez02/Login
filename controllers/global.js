@@ -103,6 +103,8 @@ export const saveUserData = async (cedula, nombre, fechaNacimiento, direccion, t
       fechaNacimiento,
       direccion,
       telefono,
+      email,
+      rol: "usuario",
     });
   } else {
     console.log('No user is signed in.');
