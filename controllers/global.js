@@ -68,7 +68,7 @@ export const loginvalidation = async (email, password) => {
       const userData = userDocSnap.data();
       if (userData.rol === 'usuario') {
         // If the user's role is "usuario", redirect to pagina.html
-        window.location.href = '/Login/templates/pagina.html';
+        return user;
       } else if (userData.rol === 'admin') {
         // If the user's role is "admin", redirect to Administrador.html
         window.location.href = '/Login/templates/Administrador.html';
