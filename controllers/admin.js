@@ -3,7 +3,7 @@ import {
     logout, 
     deleteAccount, 
     //displayUserData,
-    auth
+    //auth
 } from "./global.js";
 
 
@@ -71,9 +71,14 @@ verUsuariosBtn.addEventListener("click", () => {
 });
 
 cerrarSesionBtn.addEventListener("click", async () => {
-  // Log out the current user
-  await logout();
-  window.location.href = "../index.html";
+  try {
+    // Log out the current user
+    await logout();
+    // Redirect to the index.html page after the logout is successful
+    window.location.href = "../index.html";
+  } catch (error) {
+    console.log("Error logging out:", error);
+  }
 });
 
 eliminarCuentaBtn.addEventListener("click", async () => {
