@@ -23,7 +23,6 @@ if (loginin) {
           window.location.href='/Login/templates/Administrador.html';
         }
         await displayUserData(validation.user.uid);
-        userstate();
     }
     else{
         alert('Error authentication no sucessfull ')
@@ -123,5 +122,4 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
-
 
