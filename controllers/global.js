@@ -61,6 +61,7 @@ export const loginvalidation = async (email, password) => {
   try {
     const result = await signInWithEmailAndPassword(auth, email, password);
     const user = result.user;
+    console.log('UID del administrador:', user.uid);
     const userDocRef = doc(db, 'datosUsuario', user.uid);
     const userDocSnap = await getDoc(userDocRef);
 
