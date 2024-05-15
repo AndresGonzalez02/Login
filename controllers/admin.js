@@ -76,7 +76,7 @@ cerrarSesionBtn.addEventListener("click", () => {
 });
 
 // Function to create a new user
-function createUser(nombre, email, password, rol){
+/*function createUser(nombre, email, password, rol){
   // Implement the logic to create a new user with the provided information
   // ...
 }
@@ -97,4 +97,4 @@ function getRegisteredUsers() {
 function logout() {
   // Implement the logic to log out the current user
   // ...
-}
+}*/
