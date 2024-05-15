@@ -1,9 +1,9 @@
 import { 
     //userstate, 
     logout, 
-    //deleteAccount, 
+    deleteAccount, 
     //displayUserData,
-    //auth
+    auth
 } from "./global.js";
 
 
@@ -70,9 +70,24 @@ verUsuariosBtn.addEventListener("click", () => {
   document.body.appendChild(list);
 });
 
-cerrarSesionBtn.addEventListener("click", () => {
+cerrarSesionBtn.addEventListener("click", async () => {
   // Log out the current user
-  logout();
+  await logout();
+  window.location.href = "../index.html";
+});
+
+eliminarCuentaBtn.addEventListener("click", async () => {
+  // Delete the current user's account
+  const email = prompt("Enter the email of the account to delete:");
+  if (email) {
+    try {
+      await deleteAccount(email);
+      alert("Account deleted successfully");
+    } catch (error) {
+      alert("Error deleting account");
+      console.log("Error deleting account:", error);
+    }
+  }
 });
 
 // Function to create a new user
