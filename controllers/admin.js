@@ -1,11 +1,13 @@
 import { 
     //userstate, 
     logout, 
-    deleteAccount, 
+    deleteAccount,
+    userstate, 
     //displayUserData,
     //auth
 } from "./global.js";
 
+userstate();
 
 const crearUsuarioBtn = document.getElementById("crearUsuarioBtn");
 const eliminarUsuarioBtn = document.getElementById("eliminarUsuarioBtn");
@@ -72,12 +74,12 @@ verUsuariosBtn.addEventListener("click", () => {
 
 cerrarSesionBtn.addEventListener("click", async () => {
   try {
-    // Log out the current user
     await logout();
-    // Redirect to the index.html page after the logout is successful
+    alert('Sesión cerrada');
     window.location.href = "../index.html";
   } catch (error) {
-    console.log("Error logging out:", error);
+    alert('Error al cerrar sesión');
+    console.log("Error al cerrar sesión:", error);
   }
 });
 
@@ -95,26 +97,3 @@ eliminarCuentaBtn.addEventListener("click", async () => {
   }
 });
 
-// Function to create a new user
-/*function createUser(nombre, email, password, rol){
-  // Implement the logic to create a new user with the provided information
-  // ...
-}
-
-// Function to delete a user
-function deleteUser(email) {
-  // Implement the logic to delete a user with the provided email
-  // ...
-}
-
-// Function to get a list of registered users
-function getRegisteredUsers() {
-  // Implement the logic to get a list of registered users
-  // ...
-}
-
-// Function to log out the current user
-function logout() {
-  // Implement the logic to log out the current user
-  // ...
-}*/
