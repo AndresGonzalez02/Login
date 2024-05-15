@@ -1,3 +1,12 @@
+import { 
+    //userstate, 
+    logout, 
+    //deleteAccount, 
+    //displayUserData,
+    //auth
+} from "./global.js";
+
+
 const crearUsuarioBtn = document.getElementById("crearUsuarioBtn");
 const eliminarUsuarioBtn = document.getElementById("eliminarUsuarioBtn");
 const verUsuariosBtn = document.getElementById("verUsuariosBtn");
