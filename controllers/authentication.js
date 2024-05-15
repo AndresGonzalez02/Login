@@ -8,31 +8,35 @@ const registerBtn = document.getElementById("registerBtn");
 
 if (loginin) {
   async function validar(){
-    const email = document.getElementById("userlogin").value 
-    const pass = document.getElementById("passlogin").value 
-  
-    const validation = await loginvalidation(email,pass)
-  
-    if(validation != null){
-        alert('Authentication sucessfull '+validation.user.email)
-        if (validation.userData.rol === 'usuario') {
-          // If the user's role is "usuario", redirect to pagina.html
-          window.location.href='/Login/templates/pagina.html';
-        } else if (validation.userData.rol === 'admin') {
-          // If the user's role is "admin", redirect to Administrador.html
-          window.location.href='/Login/templates/Administrador.html';
+    const email = document.getElementById("userlogin").value;
+    const pass = document.getElementById("passlogin").value;
+
+    try {
+      const result = await loginvalidation(email, pass);
+      const user = result.user;
+      const userDocRef = doc(db, 'datosUsuario', user.uid);
+      const userDocSnap = await getDoc(userDocRef);
+
+      if (userDocSnap.exists()) {
+        const userData = userDocSnap.data();
+        alert('Autenticación exitosa: ' + user.email);
+        if (userData.rol === 'usuario') {
+          window.location.href = '/Login/templates/pagina.html';
+        } else if (userData.rol === 'admin') {
+          window.location.href = '/Login/templates/admin.html';
         }
-        await displayUserData(validation.user.uid);
-    }
-    else{
-        alert('Error authentication no sucessfull ')
-        console.log('sesion '+email+' no validation')
+      } else {
+        console.log('El documento del usuario no existe.');
+      }
+    } catch (error) {
+      alert('Error al iniciar sesión: ' + error.message);
+      console.log('Error al iniciar sesión: ', error);
     }
   }
 
-  window.addEventListener('DOMContentLoaded',async()=>{
-      loginin.addEventListener('click',validar)
-  })
+  window.addEventListener('DOMContentLoaded', async () => {
+    loginin.addEventListener('click', validar);
+  });
 }
 
 if (googleLoginBtn) {
