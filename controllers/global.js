@@ -31,6 +31,8 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
+export { db }
+
 export { auth };
 
 export const register = async (email, password) => {
