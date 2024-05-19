@@ -3,6 +3,7 @@ import { db } from './global.js';
 import { collection, getDocs } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js';
 
 const cerrarSesionBtn = document.getElementById('logout2');
+const verUsuariosBtn = document.getElementById('verUsuarios');
 
 async function cerrarSesion() {
   try {
@@ -15,7 +16,7 @@ async function cerrarSesion() {
 }
 
 cerrarSesionBtn.addEventListener('click', cerrarSesion);
-
+verUsuariosBtn.addEventListener('click', renderUserTable);
 
 async function renderUserTable() {
     const userCollectionRef = collection(db, 'datosUsuario');
@@ -38,6 +39,5 @@ async function renderUserTable() {
     document.getElementById('tablaUsuarios').innerHTML = tableHTML;
   }
   
-  // Llama a la función cuando se carga la página o cuando sea necesario
-  window.addEventListener('DOMContentLoaded', renderUserTable);
+//  window.addEventListener('DOMContentLoaded', renderUserTable);
   
