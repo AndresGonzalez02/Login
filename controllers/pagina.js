@@ -1,7 +1,6 @@
 import { userstate, logout, deleteAccount, displayUserData } from "./global.js";
 import { auth } from './global.js';
 
-
 userstate()
 
 const cerrar=document.getElementById('logout')
@@ -15,21 +14,11 @@ async function sesion() {
     alert('Sesión no cerrada: ' + error.message);
   }
 }
-window.addEventListener('DOMContentLoaded', async () => {
-  // Busca ambos botones por sus IDs y añade el manejador de eventos
-  const cerrarLogout = document.getElementById('logout');
-  const cerrarLogout2 = document.getElementById('logout2');
+window.addEventListener('DOMContentLoaded', async()=>{
+    cerrar.addEventListener('click',sesion)
+    await displayUserData();
+})
 
-  if (cerrarLogout) {
-    cerrarLogout.addEventListener('click', sesion);
-  }
-
-  if (cerrarLogout2) {
-    cerrarLogout2.addEventListener('click', sesion);
-  }
-
-  await displayUserData();
-});
 
 
 const deleteAccountBtn = document.getElementById('deleteAccountBtn');
