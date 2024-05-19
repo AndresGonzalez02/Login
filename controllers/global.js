@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js'
-import { setDoc, doc, getDoc } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js';
+import { setDoc, doc, getDoc, collection } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js';
 import {
   getAuth,
   signInWithEmailAndPassword,
@@ -32,6 +32,10 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 export { db };
+
+export { collection };
+
+export { getDoc };
 
 export { auth };
 
