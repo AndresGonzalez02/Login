@@ -20,7 +20,7 @@ if (loginin) {
           window.location.href='/Login/templates/pagina.html';
         } else if (validation.userData.rol === 'admin') {
           // If the user's role is "admin", redirect to Administrador.html
-          window.location.href='/Login/templates/Administrador.html';
+          window.location.href='/Login/templates/admin.html';
         }
         await displayUserData(validation.user.uid);
     }

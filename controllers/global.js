@@ -71,7 +71,7 @@ export const loginvalidation = async (email, password) => {
         window.location.href = '/Login/templates/pagina.html';
       } else if (userData.rol === 'admin') {
         // If the user's role is "admin", redirect to Administrador.html
-        window.location.href = '/Login/templates/Administrador.html';
+        window.location.href = '/Login/templates/admin.html';
       }
     } else {
       console.log('User document does not exist.');

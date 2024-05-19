@@ -19,7 +19,19 @@ window.addEventListener('DOMContentLoaded', async()=>{
     await displayUserData();
 })
 
+const cerrarSesionBtn = document.getElementById('logout2');
 
+async function cerrarSesion() {
+  try {
+    await logout();
+    alert('Sesión de administrador cerrada');
+    window.location.href = "../index.html";
+  } catch (error) {
+    alert('Error al cerrar sesión de administrador: ' + error.message);
+  }
+}
+
+cerrarSesionBtn.addEventListener('click', cerrarSesion);
 
 const deleteAccountBtn = document.getElementById('deleteAccountBtn');
 const deleteAccountForm = document.getElementById('deleteAccountForm');
