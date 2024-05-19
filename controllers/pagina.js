@@ -1,11 +1,10 @@
-import { userstate, logout, deleteAccount, displayUserData, db } from "./global.js";
-import { getDocs, collection } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js';
+import { userstate, logout, deleteAccount, displayUserData } from "./global.js";
+import { auth } from './global.js';
 
-userstate();
 
-const cerrarLogout = document.getElementById('logout');
-const cerrarLogout2 = document.getElementById('logout2');
-const verUsuariosBtn = document.getElementById('verUsuarios');
+userstate()
+
+const cerrar=document.getElementById('logout')
 
 async function sesion() {
   try {
@@ -16,20 +15,11 @@ async function sesion() {
     alert('Sesión no cerrada: ' + error.message);
   }
 }
-
-async function mostrarUsuarios() {
-  const querySnapshot = await getDocs(collection(db, 'datosUsuario'));
-  let tabla = '<table>';
-  tabla += '<tr><th>Email</th><th>Cédula</th><th>Nombre</th><th>Fecha de Nacimiento</th><th>Dirección</th><th>Teléfono</th></tr>';
-  querySnapshot.forEach((doc) => {
-    const data = doc.data();
-    tabla += `<tr><td>${data.email}</td><td>${data.cedula}</td><td>${data.nombre}</td><td>${data.fechaNacimiento}</td><td>${data.direccion}</td><td>${data.telefono}</td></tr>`;
-  });
-  tabla += '</table>';
-  document.getElementById('tablaUsuarios').innerHTML = tabla;
-}
-
 window.addEventListener('DOMContentLoaded', async () => {
+  // Busca ambos botones por sus IDs y añade el manejador de eventos
+  const cerrarLogout = document.getElementById('logout');
+  const cerrarLogout2 = document.getElementById('logout2');
+
   if (cerrarLogout) {
     cerrarLogout.addEventListener('click', sesion);
   }
@@ -38,17 +28,8 @@ window.addEventListener('DOMContentLoaded', async () => {
     cerrarLogout2.addEventListener('click', sesion);
   }
 
-  if (verUsuariosBtn) {
-    verUsuariosBtn.addEventListener('click', mostrarUsuarios);
-  }
-
   await displayUserData();
 });
-
-const deleteAccountBtn = document.getElementById('deleteAccountBtn');
-const deleteAccountForm = document.getElementById('deleteAccountForm');
-const emailInput = document.getElementById('email');
-const passwordInput = document.getElementById('password');
 
 
 const deleteAccountBtn = document.getElementById('deleteAccountBtn');
