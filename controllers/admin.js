@@ -1,6 +1,6 @@
 import { logout } from './global.js';
 import { db } from './global.js';
-import { collection, getDocs } from './global.js';
+import { collection, getDocs } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js';
 
 const cerrarSesionBtn = document.getElementById('logout2');
 
