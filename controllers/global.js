@@ -48,7 +48,7 @@ export const register = async (email, password) => {
     const direccion = document.getElementById("direccion").value;
     const password = document.getElementById("pass").value;
     const telefono = document.getElementById("telefono").value;
-    const email = document.getElementById("email")
+    const email = document.getElementById("email").value;
     await saveUserData(cedula, nombre, fechaNacimiento, direccion, password, telefono, email);
   }
   return result;
@@ -64,7 +64,7 @@ export const register2 = async (email, password) => {
     const direccion = document.getElementById("direccion").value;
     const password = document.getElementById("pass2").value;
     const telefono = document.getElementById("telefono").value;
-    const email = document.getElementById("email2")
+    const email = document.getElementById("email2").value;
     console.log(password)
     console.log(email)
     await saveUserData(cedula, nombre, fechaNacimiento, direccion, password, telefono, email);
