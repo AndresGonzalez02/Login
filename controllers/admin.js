@@ -1,7 +1,7 @@
 import { logout } from './global.js';
-import { collection, getDocs, deleteDoc } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js';
+import { collection, getDocs, deleteDoc, doc, getDoc } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js';
 import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js';
-import { db, doc, getDoc } from './global.js';
+import { db } from './global.js';
 
 
 const cerrarSesionBtn = document.getElementById('logout2');
