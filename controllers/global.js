@@ -65,7 +65,8 @@ export const register2 = async (email, password) => {
     const password = document.getElementById("pass2").value;
     const telefono = document.getElementById("telefono").value;
     const email = document.getElementById("email2")
-
+    console.log(password)
+    console.log(email)
     await saveUserData(cedula, nombre, fechaNacimiento, direccion, password, telefono, email);
   }
   return result;
@@ -141,8 +142,11 @@ export const deleteAccount = async (email, password) => {
 
 export const saveUserData = async (cedula, nombre, fechaNacimiento, direccion, password, telefono, email) => {
   const user = auth.currentUser;
+  console.log(password)
+  console.log(email)
   if (user) {
     const uid = user.uid;
+    console.log(uid)
     await setDoc(doc(db, 'datosUsuario', uid), {
       cedula,
       nombre,
@@ -154,6 +158,9 @@ export const saveUserData = async (cedula, nombre, fechaNacimiento, direccion, p
       rol: "usuario",
       
     });
+    console.log(password)
+    console.log(email)
+
   } else {
     console.log('No user is signed in.');
   }
