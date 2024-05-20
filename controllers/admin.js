@@ -4,9 +4,45 @@ import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from 'https:/
 import { db, register2 } from './global.js';
 
 
-const cerrarSesionBtn = document.getElementById('logout2');
-const verUsuariosBtn = document.getElementById('verUsuarios');
-const registerBtn2 = document.getElementById("registerBtn2");
+document.addEventListener('DOMContentLoaded', (event) => {
+  const cerrarSesionBtn = document.getElementById('logout2');
+  const verUsuariosBtn = document.getElementById('verUsuarios');
+  const registerBtn2 = document.getElementById("registerBtn2");
+
+  if (cerrarSesionBtn) {
+    cerrarSesionBtn.addEventListener('click', cerrarSesion);
+  }
+
+  if (verUsuariosBtn) {
+    verUsuariosBtn.addEventListener('click', renderUserTable);
+  }
+
+  if (registerBtn2) {
+    registerBtn2.addEventListener('click', async () => {
+      const email = document.getElementById("email2").value;
+      const password = document.getElementById("pass2").value;
+
+      // Verifica que la contraseña sea válida antes de intentar registrar al usuario
+      if (!validatePassword(password)) {
+        alert('La contraseña no cumple con los requisitos');
+        return;
+      }
+
+      try {
+        const result = await register2(email, password);
+        const user = result.user;
+        alert('Registration successful. A verification email has been sent to ' + user.email);
+        window.location.href='/Login/templates/admin.html';
+      } catch (error) {
+        alert('Error registration not successful');
+        console.log('registration not validated');
+      }
+    });
+  }
+
+  // ... Resto de tu código ...
+
+});
 
 
 
@@ -27,9 +63,6 @@ async function cerrarSesion() {
     alert('Error al cerrar sesión de administrador: ' + error.message);
   }
 }
-
-cerrarSesionBtn.addEventListener('click', cerrarSesion);
-verUsuariosBtn.addEventListener('click', renderUserTable);
 
 async function renderUserTable() {
   const userCollectionRef = collection(db, 'datosUsuario');
@@ -108,7 +141,7 @@ onAuthStateChanged(getAuth(), (user) => {
 
 
 
-registerBtn2.addEventListener('click', async () => {
+/*registerBtn2.addEventListener('click', async () => {
   const email = document.getElementById("email2").value;
   const password = document.getElementById("pass2").value;
 
@@ -127,4 +160,4 @@ registerBtn2.addEventListener('click', async () => {
     alert('Error registration not successful');
     console.log('registration not validated');
   }
-});
+});*/
