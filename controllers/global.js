@@ -46,8 +46,9 @@ export const register = async (email, password) => {
     const nombre = document.getElementById("nombre").value;
     const fechaNacimiento = document.getElementById("fechaNacimiento").value;
     const direccion = document.getElementById("direccion").value;
-    const password = document.getElementById("password").value;
+    const password = document.getElementById("pass").value;
     const telefono = document.getElementById("telefono").value;
+    const email = document.getElementById("email")
     await saveUserData(cedula, nombre, fechaNacimiento, direccion, password, telefono, email);
   }
   return result;
@@ -61,8 +62,10 @@ export const register2 = async (email, password) => {
     const nombre = document.getElementById("nombre").value;
     const fechaNacimiento = document.getElementById("fechaNacimiento").value;
     const direccion = document.getElementById("direccion").value;
-    const password = document.getElementById("password").value;
+    const password = document.getElementById("pass2").value;
     const telefono = document.getElementById("telefono").value;
+    const email = document.getElementById("email2")
+
     await saveUserData(cedula, nombre, fechaNacimiento, direccion, password, telefono, email);
   }
   return result;
@@ -169,8 +172,8 @@ export const displayUserData = async () => {
       document.getElementById('nombre').value = userData.nombre;
       document.getElementById('fechaNacimiento').value = userData.fechaNacimiento;
       document.getElementById('direccion').value = userData.direccion;
-      document.getElementById('telefono').value = userData.telefono;
       document.getElementById('pass').value = userData.password;
+      document.getElementById('telefono').value = userData.telefono;
     } else {
       console.log('User document does not exist.');
     }

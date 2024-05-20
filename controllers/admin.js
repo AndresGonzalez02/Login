@@ -36,9 +36,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
         const user = result.user;
         alert('Registration successful. A verification email has been sent to ' + user.email);
         window.location.href='/Login/templates/admin.html';
+        await reauthenticateAdmin();
       } catch (error) {
         alert('Error registration not successful');
         console.log('registration not validated' + error);
+        await reauthenticateAdmin();
       }
     });
   }
