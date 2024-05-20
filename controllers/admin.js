@@ -7,11 +7,7 @@ import { db, register2 } from './global.js';
 const cerrarSesionBtn = document.getElementById('logout2');
 const verUsuariosBtn = document.getElementById('verUsuarios');
 const registerBtn2 = document.getElementById("registerBtn2");
-const crearCuenta = document.getElementById("crearCuenta")
 
-crearCuenta.addEventListener('click', function() {
-  window.location.href = '/Login/templates/admin.html';
-});
 
 
 async function reauthenticateAdmin() {
