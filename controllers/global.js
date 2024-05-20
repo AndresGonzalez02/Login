@@ -46,8 +46,24 @@ export const register = async (email, password) => {
     const nombre = document.getElementById("nombre").value;
     const fechaNacimiento = document.getElementById("fechaNacimiento").value;
     const direccion = document.getElementById("direccion").value;
+    const password = document.getElementById("password").value;
     const telefono = document.getElementById("telefono").value;
-    await saveUserData(cedula, nombre, fechaNacimiento, direccion, telefono, email);
+    await saveUserData(cedula, nombre, fechaNacimiento, direccion, password, telefono, email);
+  }
+  return result;
+};
+export const register2 = async (email, password) => {
+  const result = await createUserWithEmailAndPassword(auth, email, password);
+  const user = result.user;
+  if (user) {
+    await sendEmailVerification(user);
+    const cedula = document.getElementById("cedula").value;
+    const nombre = document.getElementById("nombre").value;
+    const fechaNacimiento = document.getElementById("fechaNacimiento").value;
+    const direccion = document.getElementById("direccion").value;
+    const password = document.getElementById("password").value;
+    const telefono = document.getElementById("telefono").value;
+    await saveUserData(cedula, nombre, fechaNacimiento, direccion, password, telefono, email);
   }
   return result;
 };

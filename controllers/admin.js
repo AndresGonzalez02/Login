@@ -1,11 +1,18 @@
 import { logout } from './global.js';
 import { collection, getDocs, deleteDoc, doc, getDoc } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js';
 import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js';
-import { db } from './global.js';
+import { db, register2 } from './global.js';
 
 
 const cerrarSesionBtn = document.getElementById('logout2');
 const verUsuariosBtn = document.getElementById('verUsuarios');
+const registerBtn2 = document.getElementById("registerBtn2");
+const crearCuenta = document.getElementById("crearCuenta")
+
+crearCuenta.addEventListener('click', function() {
+  window.location.href = '/Login/templates/admin.html';
+});
+
 
 async function reauthenticateAdmin() {
   const adminEmail = 'michael.gonzalezolaya02@gmail.com'; // Deberías obtener esto de forma segura
@@ -100,5 +107,28 @@ onAuthStateChanged(getAuth(), (user) => {
   } else {
     // Usuario no está autenticado o la sesión se cerró
     console.log('No hay usuario autenticado.');
+  }
+});
+
+
+
+registerBtn2.addEventListener('click', async () => {
+  const email = document.getElementById("email2").value;
+  const password = document.getElementById("pass2").value;
+
+  // Verifica que la contraseña sea válida antes de intentar registrar al usuario
+  if (!validatePassword(password)) {
+    alert('La contraseña no cumple con los requisitos');
+    return;
+  }
+
+  try {
+    const result = await register2(email, password);
+    const user = result.user;
+    alert('Registration successful. A verification email has been sent to ' + user.email);
+    window.location.href='/Login/templates/admin.html';
+  } catch (error) {
+    alert('Error registration not successful');
+    console.log('registration not validated');
   }
 });
