@@ -30,7 +30,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
       console.log(password)
 
       try {
+        console.log(password)
         const result = await register2(email, password);
+        console.log(password)
         const user = result.user;
         alert('Registration successful. A verification email has been sent to ' + user.email);
         window.location.href='/Login/templates/admin.html';
