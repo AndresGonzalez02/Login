@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js'
-import { setDoc, doc, getDoc, deleteDoc } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js';
+import { setDoc, doc, getDoc } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js';
 import {
   getAuth,
   signInWithEmailAndPassword,
@@ -35,7 +35,7 @@ export { db };
 
 export { auth };
 
-export { deleteDoc };
+
 
 export const register = async (email, password) => {
   const result = await createUserWithEmailAndPassword(auth, email, password);
