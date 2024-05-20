@@ -12,6 +12,7 @@ async function reauthenticateAdmin() {
   const adminPassword = 'Andres#02'; // Deberías obtener esto de forma segura
   const auth = getAuth();
   await signInWithEmailAndPassword(auth, adminEmail, adminPassword);
+  renderUserTable()
 }
 
 async function cerrarSesion() {
