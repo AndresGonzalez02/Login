@@ -34,7 +34,7 @@ async function renderUserTable() {
                     <td>${userData.direccion}</td>
                     <td>${userData.telefono}</td>
                     <td>${userData.email}</td>
-                    <td><button onclick="deleteUser('${doc.id}')">Eliminar</button></td>
+                    <td><button onclick="window.deleteUser('${doc.id}')">Eliminar</button>
                   </tr>`;
   });
 
@@ -44,7 +44,7 @@ async function renderUserTable() {
   
 //  window.addEventListener('DOMContentLoaded', renderUserTable);
 
-async function deleteUser(docId) {
+window.deleteUser = async (docId) => {
   if (confirm('¿Estás seguro de que quieres eliminar esta cuenta?')) {
     const userDocRef = doc(db, 'datosUsuario', docId);
     const userDocSnap = await getDoc(userDocRef);
@@ -74,4 +74,4 @@ async function deleteUser(docId) {
       alert('Error al eliminar la cuenta: ' + error.message);
     }
   }
-}
+};
