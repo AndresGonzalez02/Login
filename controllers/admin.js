@@ -38,14 +38,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
         window.location.href='/Login/templates/admin.html';
         await reauthenticateAdmin();
       } catch (error) {
-        alert('Error registration not successful');
+        //alert('Error registration not successful');
         console.log('registration not validated' + error);
         //await reauthenticateAdmin();
       }
     });
   }
 
-  // ... Resto de tu código ...
 
 });
 
