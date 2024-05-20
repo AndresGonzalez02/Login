@@ -1,11 +1,18 @@
 import { logout } from './global.js';
 import { collection, getDocs, deleteDoc, doc, getDoc } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js';
-import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js';
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js';
 import { db } from './global.js';
 
 
 const cerrarSesionBtn = document.getElementById('logout2');
 const verUsuariosBtn = document.getElementById('verUsuarios');
+
+async function reauthenticateAdmin() {
+  const adminEmail = 'michael.gonzalezolaya02@gmail.com'; // Deberías obtener esto de forma segura
+  const adminPassword = 'Andres#02'; // Deberías obtener esto de forma segura
+  const auth = getAuth();
+  await signInWithEmailAndPassword(auth, adminEmail, adminPassword);
+}
 
 async function cerrarSesion() {
   try {
@@ -66,17 +73,30 @@ window.deleteUser = async (docId) => {
       const auth = getAuth();
       // Autenticar al usuario
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      // Eliminar la cuenta de autenticación
-      const uid = userCredential.user.uid;
-      console.log(uid);
       await userCredential.user.delete();
       // Eliminar los datos del usuario de Firestore
       await deleteDoc(userDocRef);
+      // Eliminar la cuenta de autenticación
+      const uid = userCredential.user.uid;
+      console.log(uid);
 
       alert('Cuenta eliminada exitosamente');
       // Actualizar la interfaz de usuario aquí
+      await reauthenticateAdmin();
     } catch (error) {
       alert('Error al eliminar la cuenta: ' + error.message);
+      await reauthenticateAdmin();
     }
   }
 };
+
+// Mantener la sesión del administrador activa
+onAuthStateChanged(getAuth(), (user) => {
+  if (user) {
+    // Usuario está autenticado, posiblemente el administrador
+    console.log('Administrador autenticado:', user.email);
+  } else {
+    // Usuario no está autenticado o la sesión se cerró
+    console.log('No hay usuario autenticado.');
+  }
+});
