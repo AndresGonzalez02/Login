@@ -120,7 +120,7 @@ export const deleteAccount = async (email, password) => {
   }
 };
 
-export const saveUserData = async (cedula, nombre, fechaNacimiento, direccion, telefono, email) => {
+export const saveUserData = async (cedula, nombre, fechaNacimiento, direccion, password, telefono, email) => {
   const user = auth.currentUser;
   if (user) {
     const uid = user.uid;
@@ -129,9 +129,11 @@ export const saveUserData = async (cedula, nombre, fechaNacimiento, direccion, t
       nombre,
       fechaNacimiento,
       direccion,
+      password,
       telefono,
       email,
       rol: "usuario",
+      
     });
   } else {
     console.log('No user is signed in.');
@@ -152,6 +154,7 @@ export const displayUserData = async () => {
       document.getElementById('fechaNacimiento').value = userData.fechaNacimiento;
       document.getElementById('direccion').value = userData.direccion;
       document.getElementById('telefono').value = userData.telefono;
+      document.getElementById('pass').value = userData.password;
     } else {
       console.log('User document does not exist.');
     }
