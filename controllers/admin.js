@@ -73,12 +73,13 @@ window.deleteUser = async (docId) => {
       const auth = getAuth();
       // Autenticar al usuario
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      await userCredential.user.delete();
+    
       // Eliminar los datos del usuario de Firestore
       await deleteDoc(userDocRef);
       // Eliminar la cuenta de autenticación
       const uid = userCredential.user.uid;
       console.log(uid);
+      await userCredential.user.delete();
 
       alert('Cuenta eliminada exitosamente');
       // Actualizar la interfaz de usuario aquí
