@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
       } catch (error) {
         alert('Error registration not successful');
         console.log('registration not validated' + error);
-        await reauthenticateAdmin();
+        //await reauthenticateAdmin();
       }
     });
   }

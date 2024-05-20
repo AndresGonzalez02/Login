@@ -179,8 +179,8 @@ export const displayUserData = async () => {
       document.getElementById('nombre').value = userData.nombre;
       document.getElementById('fechaNacimiento').value = userData.fechaNacimiento;
       document.getElementById('direccion').value = userData.direccion;
-      document.getElementById('pass').value = userData.password;
       document.getElementById('telefono').value = userData.telefono;
+      
     } else {
       console.log('User document does not exist.');
     }
