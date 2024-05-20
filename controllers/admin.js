@@ -56,14 +56,19 @@ window.deleteUser = async (docId) => {
 
     const userData = userDocSnap.data();
     const email = userData.email;
+    console.log(email);
     // Asumiendo que tienes un campo 'password' en tus documentos de Firestore, lo cual no es recomendable
     const password = userData.password;
+    console.log(password);
+
 
     try {
       const auth = getAuth();
       // Autenticar al usuario
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       // Eliminar la cuenta de autenticación
+      const uid = userCredential.user.uid;
+      console.log(uid);
       await userCredential.user.delete();
       // Eliminar los datos del usuario de Firestore
       await deleteDoc(userDocRef);
