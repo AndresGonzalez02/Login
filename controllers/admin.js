@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         alert('La contraseña no cumple con los requisitos');
         return;
       }
+      console.log(password)
 
       try {
         const result = await register2(email, password);
@@ -35,7 +36,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         window.location.href='/Login/templates/admin.html';
       } catch (error) {
         alert('Error registration not successful');
-        console.log('registration not validated');
+        console.log('registration not validated' + error);
       }
     });
   }
