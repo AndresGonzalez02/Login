@@ -59,7 +59,7 @@ const editDataModal = new bootstrap.Modal(document.getElementById('editDataModal
 const editDataForm = document.getElementById('editDataForm');
 
 async function setupEditDataModal() {
-  const userDocRef = db.collection('users').doc(auth.currentUser.uid);
+  const userDocRef = db.collection('datosUsuario').doc(auth.currentUser.uid);
   const userDoc = await userDocRef.get();
   if (userDoc.exists) {
     const userData = userDoc.data();
@@ -75,7 +75,7 @@ async function setupEditDataModal() {
 
 async function updateUserData(userId, data) {
   try {
-    await db.collection('users').doc(userId).update(data);
+    await db.collection('datosUsuario').doc(userId).update(data);
     alert('Datos actualizados correctamente');
   } catch (error) {
     console.error("Error updating user data: ", error);
