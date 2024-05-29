@@ -1,4 +1,4 @@
-import { userstate, logout, deleteAccount, displayUserData, updateUserData } from "./global.js";
+import { userstate, logout, deleteAccount, displayUserData } from "./global.js";
 import { auth } from './global.js';
 
 userstate()
@@ -53,56 +53,3 @@ if (deleteAccountForm) {
   });
 }
 
-// Función para manejar la actualización de datos del usuario
-const updateUserBtn = document.getElementById('updateUserBtn');
-
-if (updateUserBtn) {
-  updateUserBtn.addEventListener('click', async () => {
-    const cedula = document.getElementById('editCedula').value;
-    const nombre = document.getElementById('editNombre').value;
-    const fechaNacimiento = document.getElementById('editFechaNacimiento').value;
-    const direccion = document.getElementById('editDireccion').value;
-    const telefono = document.getElementById('editTelefono').value;
-
-    await updateUserData(
-      cedula || undefined,
-      nombre || undefined,
-      fechaNacimiento || undefined,
-      direccion || undefined,
-      telefono || undefined
-    );
-
-    alert('Datos actualizados correctamente');
-    //window.location.reload();
-  });
-}
-
-// Prevenir el comportamiento predeterminado del formulario de edición de datos
-/*const editDataForm = document.getElementById('editDataForm');
-
-if (editDataForm) {
-  editDataForm.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    const cedula = document.getElementById('editCedula').value;
-    const nombre = document.getElementById('editNombre').value;
-    const fechaNacimiento = document.getElementById('editFechaNacimiento').value;
-    const direccion = document.getElementById('editDireccion').value;
-    const telefono = document.getElementById('editTelefono').value;
-
-    await updateUserData(
-      cedula || undefined,
-      nombre || undefined,
-      fechaNacimiento || undefined,
-      direccion || undefined,
-      telefono || undefined
-    );
-
-    alert('Datos actualizados correctamente');
-  });
-}*/
-
-// Evento para cargar los datos del usuario al cargar la página
-/*window.addEventListener('DOMContentLoaded', async () => {
-  await userstate(); // Verificar el estado de autenticación
-  await displayUserData(); // Mostrar los datos del usuario
-});*/

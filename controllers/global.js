@@ -140,25 +140,6 @@ export const deleteAccount = async (email, password) => {
   }
 };
 
-export const updateUserData = async (cedula, nombre, fechaNacimiento, direccion, telefono) => {
-  const user = auth.currentUser;
-  if (user) {
-    const uid = user.uid;
-    const userDocRef = doc(db, 'datosUsuario', uid);
-
-    const dataToUpdate = {};
-    if (cedula) dataToUpdate.cedula = cedula;
-    if (nombre) dataToUpdate.nombre = nombre;
-    if (fechaNacimiento) dataToUpdate.fechaNacimiento = fechaNacimiento;
-    if (direccion) dataToUpdate.direccion = direccion;
-    if (telefono) dataToUpdate.telefono = telefono;
-
-    await updateDoc(userDocRef, dataToUpdate);
-    console.log('Datos actualizados:', dataToUpdate);
-  } else {
-    console.log('No user is signed in.');
-  }
-};
 
 export const saveUserData = async (cedula, nombre, fechaNacimiento, direccion, password, telefono, email) => {
   const user = auth.currentUser;
