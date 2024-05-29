@@ -78,7 +78,7 @@ if (updateUserBtn) {
 }
 
 // Prevenir el comportamiento predeterminado del formulario de edición de datos
-const editDataForm = document.getElementById('editDataForm');
+/*const editDataForm = document.getElementById('editDataForm');
 
 if (editDataForm) {
   editDataForm.addEventListener('submit', async (event) => {
@@ -99,7 +99,7 @@ if (editDataForm) {
 
     alert('Datos actualizados correctamente');
   });
-}
+}*/
 
 // Evento para cargar los datos del usuario al cargar la página
 /*window.addEventListener('DOMContentLoaded', async () => {
