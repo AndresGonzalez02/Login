@@ -1,5 +1,5 @@
 import { userstate, logout, deleteAccount, displayUserData } from "./global.js";
-import { auth } from './global.js';
+import { auth, db } from './global.js';
 
 userstate()
 
@@ -14,10 +14,11 @@ async function sesion() {
     alert('Sesión no cerrada: ' + error.message);
   }
 }
-window.addEventListener('DOMContentLoaded', async()=>{
-    cerrar.addEventListener('click',sesion)
-    await displayUserData();
-})
+window.addEventListener('DOMContentLoaded', async () => {
+  cerrar.addEventListener('click', sesion);
+  await displayUserData();
+  await setupEditDataModal();
+});
 
 const cerrarSesionBtn = document.getElementById('logout2');
 
@@ -53,3 +54,47 @@ if (deleteAccountForm) {
   });
 }
 
+
+const editDataModal = new bootstrap.Modal(document.getElementById('editDataModal'));
+const editDataForm = document.getElementById('editDataForm');
+
+async function setupEditDataModal() {
+  const userDocRef = db.collection('users').doc(auth.currentUser.uid);
+  const userDoc = await userDocRef.get();
+  if (userDoc.exists) {
+    const userData = userDoc.data();
+    document.getElementById('editCedula').value = userData.cedula || '';
+    document.getElementById('editNombre').value = userData.nombre || '';
+    document.getElementById('editFechaNacimiento').value = userData.fechaNacimiento || '';
+    document.getElementById('editDireccion').value = userData.direccion || '';
+    document.getElementById('editTelefono').value = userData.telefono || '';
+  } else {
+    console.log('No such document!');
+  }
+}
+
+async function updateUserData(userId, data) {
+  try {
+    await db.collection('users').doc(userId).update(data);
+    alert('Datos actualizados correctamente');
+  } catch (error) {
+    console.error("Error updating user data: ", error);
+    alert('Error al actualizar los datos: ' + error.message);
+  }
+}
+
+if (editDataForm) {
+  editDataForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const updatedData = {
+      cedula: document.getElementById('editCedula').value,
+      nombre: document.getElementById('editNombre').value,
+      fechaNacimiento: document.getElementById('editFechaNacimiento').value,
+      direccion: document.getElementById('editDireccion').value,
+      telefono: document.getElementById('editTelefono').value,
+    };
+    await updateUserData(auth.currentUser.uid, updatedData);
+    editDataModal.hide();
+    await displayUserData();
+  });
+}
