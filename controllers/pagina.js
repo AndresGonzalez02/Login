@@ -1,4 +1,4 @@
-import { userstate, logout, deleteAccount, displayUserData, saveUserData2 } from "./global.js";
+import { userstate, logout, deleteAccount, displayUserData, updateUserData } from "./global.js";
 import { auth } from './global.js';
 
 userstate()
@@ -53,7 +53,7 @@ if (deleteAccountForm) {
   });
 }
 
-// Event listener for updating user data
+// Función para manejar la actualización de datos del usuario
 const updateUserBtn = document.getElementById('updateUserBtn');
 
 if (updateUserBtn) {
@@ -64,13 +64,12 @@ if (updateUserBtn) {
     const direccion = document.getElementById('editDireccion').value;
     const telefono = document.getElementById('editTelefono').value;
 
-    await saveUserData2(
+    await updateUserData(
       cedula || undefined,
       nombre || undefined,
       fechaNacimiento || undefined,
       direccion || undefined,
-      telefono || undefined,
-      auth.currentUser.email
+      telefono || undefined
     );
 
     alert('Datos actualizados correctamente');
@@ -78,3 +77,8 @@ if (updateUserBtn) {
   });
 }
 
+// Evento para cargar los datos del usuario al cargar la página
+window.addEventListener('DOMContentLoaded', async () => {
+  await userstate(); // Verificar el estado de autenticación
+  await displayUserData(); // Mostrar los datos del usuario
+});
