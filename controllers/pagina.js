@@ -73,7 +73,7 @@ if (updateUserBtn) {
     );
 
     alert('Datos actualizados correctamente');
-    window.location.reload();
+    //window.location.reload();
   });
 }
 
