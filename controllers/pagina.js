@@ -78,7 +78,4 @@ if (updateUserBtn) {
 }
 
 // Evento para cargar los datos del usuario al cargar la página
-window.addEventListener('DOMContentLoaded', async () => {
-  await userstate(); // Verificar el estado de autenticación
-  await displayUserData(); // Mostrar los datos del usuario
-});
+
