@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js'
-import { setDoc, doc, getDoc } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js';
+import { setDoc, doc, getDoc, updateDoc } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js';
 import {
   getAuth,
   signInWithEmailAndPassword,
@@ -137,6 +137,25 @@ export const deleteAccount = async (email, password) => {
   } catch (error) {
     alert('Error al eliminar la cuenta');
     console.log('Error al eliminar la cuenta: ', error);
+  }
+};
+
+export const saveUserData2 = async (cedula, nombre, fechaNacimiento, direccion, telefono, email) => {
+  const user = auth.currentUser;
+  if (user) {
+    const uid = user.uid;
+    const userDocRef = doc(db, 'datosUsuario', uid);
+
+    const dataToUpdate = {};
+    if (cedula) dataToUpdate.cedula = cedula;
+    if (nombre) dataToUpdate.nombre = nombre;
+    if (fechaNacimiento) dataToUpdate.fechaNacimiento = fechaNacimiento;
+    if (direccion) dataToUpdate.direccion = direccion;
+    if (telefono) dataToUpdate.telefono = telefono;
+
+    await updateDoc(userDocRef, dataToUpdate);
+  } else {
+    console.log('No user is signed in.');
   }
 };
 

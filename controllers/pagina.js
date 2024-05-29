@@ -1,4 +1,4 @@
-import { userstate, logout, deleteAccount, displayUserData } from "./global.js";
+import { userstate, logout, deleteAccount, displayUserData, saveUserData2 } from "./global.js";
 import { auth } from './global.js';
 
 userstate()
@@ -53,4 +53,28 @@ if (deleteAccountForm) {
   });
 }
 
+// Event listener for updating user data
+const updateUserBtn = document.getElementById('updateUserBtn');
+
+if (updateUserBtn) {
+  updateUserBtn.addEventListener('click', async () => {
+    const cedula = document.getElementById('editCedula').value;
+    const nombre = document.getElementById('editNombre').value;
+    const fechaNacimiento = document.getElementById('editFechaNacimiento').value;
+    const direccion = document.getElementById('editDireccion').value;
+    const telefono = document.getElementById('editTelefono').value;
+
+    await saveUserData2(
+      cedula || undefined,
+      nombre || undefined,
+      fechaNacimiento || undefined,
+      direccion || undefined,
+      telefono || undefined,
+      auth.currentUser.email
+    );
+
+    alert('Datos actualizados correctamente');
+    window.location.reload();
+  });
+}
 
